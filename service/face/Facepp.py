@@ -5,8 +5,7 @@ import requests
 def facemerge(mer_rate,baseStr,ranges,templeurl,metho,selfs):
     sess=requests.session()
     apikeys= apikey.facepp()
-    templeurl="https://s1.ax1x.com/2018/03/21/97rgud.jpg"
-    ranges="206,393,108,103"
+
     url = 'https://api-cn.faceplusplus.com/imagepp/v1/mergeface'
     datas={
         "api_key":apikeys["api_key"],
