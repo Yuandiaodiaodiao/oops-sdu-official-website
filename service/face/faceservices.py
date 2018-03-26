@@ -1,4 +1,5 @@
 import tornado.options
+import tornado.web
 import json
 import Facepp
 import Tencentface
@@ -26,6 +27,8 @@ class Face_Handler(tornado.web.RequestHandler):
         # 默认参数表
         randoms = 1  # 默认一比一调用api
         temple = "cf_movie_fengjiu"
+        templexa=["cf_lover_fanli","cf_lover_libai","cf_lover_sunshang","cf_lover_wuque","cf_lover_xishi","cf_lover_yuhuan","cf_movie_baiqian","cf_movie_fengjiu","cf_movie_yehua"]
+        temple=templexa[random.randint(0,len(templexa)-1)]
         merge_rate = 100
         baseStr = jsonsx["baseStr"]
         ranges = "206,393,108,103"
@@ -34,7 +37,7 @@ class Face_Handler(tornado.web.RequestHandler):
         xc = random.randint(0, len(templesjson) - 1)
         merge_rate = templesjson[xc]["merage"]
         templeurl = templesjson[xc]["url"]
-        range = templesjson[xc]["range"]
+        ranges = templesjson[xc]["range"]
 
         if "random" in jsonsx:
             if judges(str(jsonsx["random"])):
@@ -58,11 +61,12 @@ class Face_Handler(tornado.web.RequestHandler):
                 templeurl = templeurl.replace(" ", "")
                 tempx = int(templeurl)-1
                 merge_rate = templesjson[tempx]["merage"]
-                range = templesjson[tempx]["range"]
+                range = str(templesjson[tempx]["range"])
+
                 templeurl = templesjson[tempx]["url"]
 
                 print(templeurl)
-        randoms=0
+        randoms = 1
         if float(randoms) > 1000:
             randoms = 1000
         randoms *= 1000
