@@ -1,6 +1,7 @@
 import apikey
 import json
 import requests
+import timedebug
 
 def facemerge(mer_rate,baseStr,ranges,templeurl,metho,selfs):
     sess=requests.session()
@@ -20,8 +21,11 @@ def facemerge(mer_rate,baseStr,ranges,templeurl,metho,selfs):
         datas["merge_url"]=baseStr
     else:
         datas['merge_base64']=baseStr[baseStr.find(",") + 1:]
-    print("post+++++"+str(datas))
+    print("api数据包"+str(datas))
+    timex = timedebug.timeclass()
+    timex.r()
     r=sess.post(url,data=datas)
+    timex.g("调用api")
     # print("Returnnnnnnn="+r.text)
     returns = {"imagetype": "base64", "error": "null"}
     # print(r.json())
@@ -29,7 +33,8 @@ def facemerge(mer_rate,baseStr,ranges,templeurl,metho,selfs):
     if len(jsons)!=0:
         if "error_message" in jsons:
             errors=jsons["error_message"]
-            print(errors)
+            print("错误信息",end="")
+            print(jsons)
             returns["ifok"] = "false"
             if errors.find("BAD_FACE")!=-1 or errors.find("NO_FACE_FOUND")==-1 :
                 returns["error"]="noface"
@@ -38,4 +43,6 @@ def facemerge(mer_rate,baseStr,ranges,templeurl,metho,selfs):
         else:
             returns["ifok"] = "true"
             returns["image"] = jsons["result"]
+    timex.r()
     selfs.write(json.dumps(returns))
+    timex.g("self.write")

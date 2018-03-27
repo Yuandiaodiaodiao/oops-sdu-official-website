@@ -19,17 +19,17 @@
     },
     {
         "id":"3",
-        "name":"冻鳗女",
+        "name":"尔康男",
         "url":"https://oops-1256293253.cos.ap-beijing.myqcloud.com/face/temple-img/3.jpg",
-        "range":"97,89,50,66",
+        "range":"15,136,271,309",
         "merage":"85",
-	"sex":"woman"
+	"sex":"man"
     },
     {
         "id":"4",
         "name":"灰衣男",
         "url":"https://oops-1256293253.cos.ap-beijing.myqcloud.com/face/temple-img/4.jpg",
-        "range":"131,247,156,209",
+        "range":"163,256,140,148",
         "merage":"57",
 	"sex":"man"
     },
